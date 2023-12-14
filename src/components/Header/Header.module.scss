@@ -1,0 +1,60 @@
+.header {
+  composes: primaryBgColor from '/home/kacper/repos/odin-shopping-cart/src/colors.module.scss';
+  display: flex;
+  justify-content: space-between;
+
+  img {
+    max-height: 6em;
+  }
+}
+
+nav {
+  display: flex;
+  align-items: center;
+
+  a {
+    position: relative;
+    color: whitesmoke;
+    background-color: grey;
+    text-decoration: none;
+    margin-right: 2em;
+    overflow: hidden;
+    padding: 0.5em;
+    min-width: 100px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .inactive {
+    &::before {
+      position: absolute;
+      content: '';
+      bottom: 0;
+      background-color: whitesmoke;
+      width: calc(100% + 1em);
+      height: 3px;
+      transform: translateX(calc(-100% - 0.5em));
+      transition: transform 0.15s;
+      padding: 0;
+    }
+
+    &:hover::before {
+      transform: translateX(-0.5em);
+    }
+  }
+
+  .active {
+    &::before {
+      position: absolute;
+      content: '';
+      bottom: 0;
+      background-color: whitesmoke;
+      width: calc(100% + 1em);
+      height: 3px;
+      transform: translateX(-0.5em);
+      transition: transform 0.25s;
+      padding: 0;
+    }
+  }
+}
