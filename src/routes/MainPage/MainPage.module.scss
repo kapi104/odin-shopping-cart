@@ -1,0 +1,10 @@
+@import '/src/colors.scss';
+
+.MainPage {
+  background-image: url(https://lowrance.com.pl/wp-content/uploads/2017/05/placeholder.gif);
+  background-position: center;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

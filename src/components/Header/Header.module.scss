@@ -1,5 +1,7 @@
+@import '/src/colors.scss';
+
 .header {
-  composes: primaryBgColor from '/home/kacper/repos/odin-shopping-cart/src/colors.module.scss';
+  background-color: $primaryColor;
   display: flex;
   justify-content: space-between;
 
@@ -14,7 +16,7 @@ nav {
 
   a {
     position: relative;
-    color: whitesmoke;
+    color: $secondaryColor;
     background-color: grey;
     text-decoration: none;
     margin-right: 2em;
@@ -31,7 +33,7 @@ nav {
       position: absolute;
       content: '';
       bottom: 0;
-      background-color: whitesmoke;
+      background-color: $secondaryColor;
       width: calc(100% + 1em);
       height: 3px;
       transform: translateX(calc(-100% - 0.5em));
@@ -49,7 +51,7 @@ nav {
       position: absolute;
       content: '';
       bottom: 0;
-      background-color: whitesmoke;
+      background-color: $secondaryColor;
       width: calc(100% + 1em);
       height: 3px;
       transform: translateX(-0.5em);
