@@ -1,0 +1,21 @@
+.loading {
+  position: absolute;
+  top: calc(50% - 2.5rem);
+  left: calc(50% - 2.5rem);
+  animation: spin 1s linear infinite;
+  transform-origin: center;
+
+  svg {
+    height: 5rem;
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
