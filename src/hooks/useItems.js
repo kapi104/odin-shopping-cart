@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 const useItems = () => {
   const [loading, setLoading] = useState(true);
   const [items, setItems] = useState([]);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     fetch('https://fakestoreapi.com/products')
@@ -12,7 +12,11 @@ const useItems = () => {
         setLoading(false);
         setItems(res);
       })
-      .catch((err) => setError(err));
+      .catch((err) => {
+        console.log(err);
+        setLoading(false);
+        setError(err);
+      });
   }, []);
   return { loading, items, error };
 };

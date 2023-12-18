@@ -5,12 +5,14 @@ import Header from './components/Header/Header';
 import MainPage from './routes/MainPage/MainPage';
 import Shop from './routes/Shop/Shop';
 import Cart from './routes/cart/cart';
+import ErrorElement from './components/ErrorElement/ErrorElement';
 
 const Router = () => {
   const router = createBrowserRouter([
     {
       path: '/',
       element: <App />,
+      errorElement: <ErrorElement />,
       children: [
         {
           index: true,
@@ -24,6 +26,7 @@ const Router = () => {
         {
           path: '/shop',
           element: <Shop />,
+          errorElement: <ErrorElement />,
         },
         {
           path: '/cart',

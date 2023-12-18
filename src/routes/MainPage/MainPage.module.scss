@@ -3,8 +3,13 @@
 .MainPage {
   background-image: url(https://lowrance.com.pl/wp-content/uploads/2017/05/placeholder.gif);
   background-position: center;
-  height: 100%;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 0;
 }

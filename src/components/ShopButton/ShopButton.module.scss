@@ -9,6 +9,7 @@
   border-radius: 5rem;
   cursor: pointer;
   transition: all 0.15s;
+  z-index: 3;
 
   &:hover {
     background-color: $secondaryColor;
