@@ -65,34 +65,34 @@ describe('Item', () => {
   };
 
   it('should have "item1" text content', () => {
-    render(<Item item={fakeItem} />);
+    render(<Item item={fakeItem} />, { wrapper: MemoryRouter });
     expect(screen.getByLabelText('title')).toHaveTextContent('item1');
     expect(screen.getByLabelText('price')).toHaveTextContent('54');
   });
 
   it('should have img with "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg" url', () => {
-    render(<Item item={fakeItem} />);
+    render(<Item item={fakeItem} />, { wrapper: MemoryRouter });
     expect(screen.getByRole('img')).toBeInTheDocument();
     expect(screen.getByRole('img')).toHaveAttribute('src', 'https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg');
   });
 
   it('img should have "item1" alt text', () => {
-    render(<Item item={fakeItem} />);
+    render(<Item item={fakeItem} />, { wrapper: MemoryRouter });
     expect(screen.getByRole('img')).toHaveAttribute('alt', 'item1');
   });
 
   it('should display rating', () => {
-    render(<Item item={fakeItem} />);
+    render(<Item item={fakeItem} />, { wrapper: MemoryRouter });
     expect(screen.getByLabelText('rating')).toHaveTextContent('4.5/5');
   });
 
   it('should display star svg', () => {
-    render(<Item item={fakeItem} />);
+    render(<Item item={fakeItem} />, { wrapper: MemoryRouter });
     expect(screen.getByTestId('starSvg')).toBeInTheDocument();
   });
 
   it('should display rates cound', () => {
-    render(<Item item={fakeItem} />);
+    render(<Item item={fakeItem} />, { wrapper: MemoryRouter });
     expect(screen.getByLabelText('rating')).toHaveTextContent('(120)');
   });
 
@@ -108,7 +108,7 @@ describe('Item', () => {
     };
 
     it('should not render if title is missing', () => {
-      render(<Item item={missingTitleItem} />);
+      render(<Item item={missingTitleItem} />, { wrapper: MemoryRouter });
       const btn = screen.queryByRole('button');
       expect(btn).not.toBeInTheDocument();
     });
@@ -124,7 +124,7 @@ describe('Item', () => {
     };
 
     it('should not render if price is missing', () => {
-      render(<Item item={missingPriceItem} />);
+      render(<Item item={missingPriceItem} />, { wrapper: MemoryRouter });
       const btn = screen.queryByRole('button');
       expect(btn).not.toBeInTheDocument();
     });

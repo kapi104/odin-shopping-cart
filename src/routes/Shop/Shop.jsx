@@ -17,7 +17,7 @@ const Shop = () => {
   const cards = items.map((item) => <Item item={item} key={item.id} />);
 
   return (
-    <main data-testid="Shop" className={styles.main}>
+    <main data-testid="Shop" className={styles.Shop}>
       {cards}
     </main>
   );
