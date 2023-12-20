@@ -8,8 +8,6 @@ import Cart from './routes/cart/cart';
 import ItemDetails from './routes/ItemDetails/ItemDetails';
 import ErrorElement from './components/ErrorElement/ErrorElement';
 
-import { loader as itemLoader } from './routes/ItemDetails/loader';
-
 const Router = () => {
   const router = createBrowserRouter([
     {
@@ -38,7 +36,6 @@ const Router = () => {
         {
           path: '/shop/:itemId',
           element: <ItemDetails />,
-          loader: itemLoader,
         },
       ],
     },

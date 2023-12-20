@@ -91,7 +91,7 @@ describe('Item', () => {
     expect(screen.getByTestId('starSvg')).toBeInTheDocument();
   });
 
-  it('should display rates cound', () => {
+  it('should display rates count', () => {
     render(<Item item={fakeItem} />, { wrapper: MemoryRouter });
     expect(screen.getByLabelText('rating')).toHaveTextContent('(120)');
   });

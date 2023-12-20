@@ -1,9 +1,9 @@
-import { useLoaderData } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 const ItemDetails = () => {
-  const { itemId } = useLoaderData();
+  const { itemId } = useParams();
 
-  return <div>{itemId}</div>;
+  return <main>{itemId}</main>;
 };
 
 export default ItemDetails;
