@@ -13,7 +13,6 @@ const useSingleItem = (productId) => {
         setItem(res);
       })
       .catch((err) => {
-        console.log(err);
         setLoading(false);
         setError(err);
       });
