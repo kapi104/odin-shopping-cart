@@ -25,16 +25,19 @@ const ItemDetails = () => {
       </span>
       <div className={styles.wrapper}>
         <img src={item.image} alt={item.title} />
-        <div className="right">
+        <div className={styles.right}>
           <h3 aria-label="price">{item.price} $</h3>
           <span aria-label="rating">
             {item.rating.rate}/5 <Icon path={mdiStar} data-testid="starSvg" />({item.rating.count})
           </span>
           <span>Category: {item.category}</span>
-          <button>ADD TO CART</button>
+          <button>
+            <span>ADD TO CART</span>
+          </button>
         </div>
       </div>
       <div className="descrition">
+        <h3>description</h3>
         <p aria-label="description">{item.description}</p>
       </div>
     </main>

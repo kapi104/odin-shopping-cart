@@ -13,7 +13,6 @@ const useItems = () => {
         setItems(res);
       })
       .catch((err) => {
-        console.log(err);
         setLoading(false);
         setError(err);
       });
