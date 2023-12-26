@@ -1,13 +1,16 @@
 import { useParams } from 'react-router-dom';
 import useSingleItem from '../../hooks/useSingleItem';
 import Loading from '../../components/Loading/Loading';
+import QuantitySelector from '../../components/QuantitySelector/QuantitySelector';
 import { mdiStar } from '@mdi/js';
 import Icon from '@mdi/react';
 import styles from './ItemDetails.module.scss';
+import { useState } from 'react';
 
 const ItemDetails = () => {
   const { itemId } = useParams();
   const { loading, item, error } = useSingleItem(itemId);
+  const [currentQuantity, setCurrentQuantity] = useState(1);
 
   if (loading) {
     return <Loading />;
@@ -31,9 +34,12 @@ const ItemDetails = () => {
             {item.rating.rate}/5 <Icon path={mdiStar} data-testid="starSvg" />({item.rating.count})
           </span>
           <span>Category: {item.category}</span>
-          <button>
-            <span>ADD TO CART</span>
-          </button>
+          <div className={styles.buttonWrapper}>
+            <button className={styles.addToCart} aria-label="add to cart">
+              <span>ADD TO CART</span>
+            </button>
+            <QuantitySelector currentQuantity={currentQuantity} setCurrentQuantity={setCurrentQuantity} />
+          </div>
         </div>
       </div>
       <div className="descrition">

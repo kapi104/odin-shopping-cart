@@ -3,6 +3,7 @@ import { screen, render } from '@testing-library/react';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
 import ItemDetails from '../src/routes/ItemDetails/ItemDetails';
 import useSingleItem from '../src/hooks/useSingleItem';
+import userEvent from '@testing-library/user-event';
 
 vi.mock('../src/hooks/useSingleItem');
 
@@ -106,7 +107,54 @@ describe('renders ItemDetails', () => {
   it('should render "ADD TO CART" button', () => {
     useSingleItem.mockReturnValue(mockItem);
     renderComponent();
-    expect(screen.getByRole('button')).toHaveTextContent('ADD TO CART');
+    expect(screen.getByLabelText('add to cart')).toHaveTextContent('ADD TO CART');
+  });
+
+  it('should render QuantitySelector', () => {
+    useSingleItem.mockReturnValue(mockItem);
+    renderComponent();
+    expect(screen.getByTestId('quantitySelector')).toBeInTheDocument();
+  });
+
+  it('quantity selector should display 1', () => {
+    useSingleItem.mockReturnValue(mockItem);
+    renderComponent();
+    expect(screen.getByLabelText('current quantity')).toHaveTextContent('1');
+  });
+
+  it('quantity selector should display 2 after clicking "+" button', async () => {
+    useSingleItem.mockReturnValue(mockItem);
+
+    const user = userEvent.setup();
+    renderComponent();
+
+    await user.click(screen.getByLabelText('plus quantity'));
+
+    expect(screen.getByLabelText('current quantity')).toHaveTextContent('2');
+  });
+
+  it('quantity selector should display 1 after clicking "-" button', async () => {
+    useSingleItem.mockReturnValue(mockItem);
+
+    const user = userEvent.setup();
+    renderComponent();
+
+    await user.click(screen.getByLabelText('plus quantity'));
+
+    await user.click(screen.getByLabelText('minus quantity'));
+
+    expect(screen.getByLabelText('current quantity')).toHaveTextContent('1');
+  });
+
+  it('quantity selector should not change after clicking "-" button if currentQuantity = 1', async () => {
+    useSingleItem.mockReturnValue(mockItem);
+
+    const user = userEvent.setup();
+    renderComponent();
+
+    await user.click(screen.getByLabelText('minus quantity'));
+
+    expect(screen.getByLabelText('current quantity')).toHaveTextContent('1');
   });
 });
 
