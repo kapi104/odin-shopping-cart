@@ -5,12 +5,14 @@ import QuantitySelector from '../../components/QuantitySelector/QuantitySelector
 import { mdiStar } from '@mdi/js';
 import Icon from '@mdi/react';
 import styles from './ItemDetails.module.scss';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
+import { CartContext } from '../App/App';
 
 const ItemDetails = () => {
   const { itemId } = useParams();
   const { loading, item, error } = useSingleItem(itemId);
   const [currentQuantity, setCurrentQuantity] = useState(1);
+  const cart = useContext(CartContext);
 
   if (loading) {
     return <Loading />;
@@ -19,6 +21,25 @@ const ItemDetails = () => {
   if (error) {
     throw new Error(error);
   }
+
+  const addToCart = () => {
+    if (cart.cartItems.filter((item) => item.id === itemId).length === 0) {
+      cart.setCartItems([
+        ...cart.cartItems,
+        { id: itemId, title: item.title, price: item.price, quantity: currentQuantity },
+      ]);
+    } else {
+      cart.setCartItems(
+        cart.cartItems.map((item) => {
+          if (item.id === itemId) {
+            item.quantity = item.quantity + currentQuantity;
+            return item;
+          }
+          return item;
+        }),
+      );
+    }
+  };
 
   return (
     <main className={styles.ItemDetails}>
@@ -35,7 +56,7 @@ const ItemDetails = () => {
           </span>
           <span>Category: {item.category}</span>
           <div className={styles.buttonWrapper}>
-            <button className={styles.addToCart} aria-label="add to cart">
+            <button className={styles.addToCart} aria-label="add to cart" onClick={addToCart}>
               <span>ADD TO CART</span>
             </button>
             <QuantitySelector currentQuantity={currentQuantity} setCurrentQuantity={setCurrentQuantity} />
